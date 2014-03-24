@@ -1,7 +1,8 @@
 __author__ = 'morrolan'
 
-import psutil
 import os
+#import psutil
+
 
 def check_for_files():
     """
@@ -22,10 +23,14 @@ def hide_oneself():
 
 def check_for_antidote():
     """
-    Here we will look for the antidote, which will be an empty file with a particular name.
+    Here we will look for the antidote, which will be a text file of a particular name with particular contents.
 
     """
-    pass
+    with open(os.path.normpath(r"mead.txt")) as __antidote_file:
+        __antidote_contents = __antidote_file.read()
+
+        if __antidote_contents == "STOP":
+            print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
 
 
 def save_friar():
@@ -44,3 +49,5 @@ def talk_to_friar():
 
     """
     pass
+
+check_for_antidote()
