@@ -32,11 +32,15 @@ class Merryman:
         Here we will look for the antidote, which will be a text file of a particular name with particular contents.
 
         """
-        with open(os.path.normpath(antidote_file)) as __antidote_file:
-            __antidote_contents = __antidote_file.read()
+        try:
+            with open(os.path.normpath(antidote_file)) as __antidote_file:
+                __antidote_contents = __antidote_file.read()
 
-            if __antidote_contents == antidote_content:
-                print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
+                if __antidote_contents == antidote_content:
+                    print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
+
+        except IOError:
+            print("Wench!  Why hath thou not brought forth more Meade?")
 
 
     def save_friar(self):
