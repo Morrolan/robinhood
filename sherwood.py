@@ -3,6 +3,12 @@ __author__ = 'morrolan'
 import os
 import random
 
+# as this is a third party module lets have some amount of error-checking involved.
+try:
+    import psutil
+except ImportError:
+    psutil = None
+
 
 class Merryman(object):
 
@@ -54,7 +60,6 @@ class Merryman(object):
                 print("Wench!  Why hath thou not brought forth more Meade?")
             return False
 
-
     def talk_to_friar(self):
         """
         Here I will check to see if the Friar is running.  At the moment I don't know how to identify
@@ -63,7 +68,6 @@ class Merryman(object):
 
         """
         pass
-
 
     def save_friar(self):
         """
