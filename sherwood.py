@@ -11,7 +11,6 @@ except ImportError:
 
 
 class Merryman(object):
-
     __all__ = []
 
     def __init__(self, name):
@@ -47,9 +46,10 @@ class Merryman(object):
                 _antidote_contents = _antidote_file.read()
 
                 if antidote_key in _antidote_contents:
-                    print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
+                    # print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
                     return True
                 else:
+                    # Don't terminate the merrymen as no antidote has been found
                     return False
 
         except IOError:
@@ -57,10 +57,20 @@ class Merryman(object):
             if _result == 0:
                 # would be nice to have a choice of sentences here.  Maybe create a list and have a random choice chosen
                 # and printed from it?
-                print("Wench!  Why hath thou not brought forth more Meade?")
+                _response_list = ["Wench!  Why hath thou not brought forth more Meade?",
+                                  "Wench!  Come hither and remove your undergarments!",
+                                  "I hath been poisoned and Marion has ventured forth for an antidote, \
+                                  but alas I fear she will not returneth in time!",
+                                  "Where art though my fair Marion?"]
+
+                _response_length = len(_response_list)
+                _response_string = str(_response_list[random.randint(0, _response_length -1)])
+
+                print(_response_string)
+
             return False
 
-    def talk_to_friar(self):
+    def talk_to_others(self):
         """
         Here I will check to see if the Friar is running.  At the moment I don't know how to identify
         a particular running process.  One possibility is to get the PID somehow and stash it somewhere
@@ -69,7 +79,7 @@ class Merryman(object):
         """
         pass
 
-    def save_friar(self):
+    def save_others(self):
         """
         here we need to figure out and watch for the friar dying.
 
