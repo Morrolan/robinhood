@@ -11,12 +11,24 @@ except ImportError:
 
 
 robin = sherwood.Merryman('Robin')
-print "Name: " + robin.name
+print "Name: " + str(robin.get_name)
 antidote_present = robin.check_for_antidote('marion.txt', 'HELP')
 
+
 for p in psutil.process_iter():
-    #print(p)
-    print p.name()
+
+    try:
+        print p.name()
+
+        if p.name() == 'python.exe':
+            print "Woo!   Found Python at pid: ({0})".format(str(p.pid))
+            exit(0)
+
+    except psutil.AccessDenied:
+        print "AccessDenied error:  Are you running as Administrator?"
+
+
+
 
 #while antidote_present is False:
 #    sleep(100)
