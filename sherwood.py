@@ -33,7 +33,8 @@ class Merryman(object):
 
             for process in psutil.process_iter():
                 try:
-                    if process.name() == 'python.exe':
+                    process_name = process.name()
+                    if process_name.startswith('python'):
                         pids.append(process.pid)
                 except psutil.AccessDenied:
                     # we pass here purely because we simply don't have access to all process data and we don't want our
@@ -58,7 +59,7 @@ class Merryman(object):
         """
         pass
 
-    def hide_oneself(self):
+    def hide_self(self):
         """
         If I need to hide myself, i will do it here.  I am not not sure what form this will take.
 

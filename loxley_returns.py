@@ -14,29 +14,23 @@ robin = sherwood.Merryman('Robin')
 antidote_present = robin.check_for_antidote('marion.txt', 'HELP')
 
 
-# for process in psutil.process_iter():
-#
-#     try:
-#         print process.name()
-#
-#         if process.name() == 'mspaint.exe':
-#             print "Woo!   Found mspaint.exe at pid: ({0})".format(str(process.pid))
-#
-#             _pid = process.pid
-#
-#             while True:
-#                 if psutil.pid_exists(_pid) is True:
-#                     print "MSpaint still exists"
-#                 else:
-#                     print "MSpaint has died :("
+for process in psutil.process_iter():
+    try:
+        print process.name()
 
+        if process.name() == 'mspaint.exe':
+            print "Woo!   Found mspaint.exe at pid: ({0})".format(str(process.pid))
 
+            _pid = process.pid
 
+            while True:
+                if psutil.pid_exists(_pid) is True:
+                    print "MSpaint still exists"
+                else:
+                    print "MSpaint has died :("
 
-            # exit(0)
-
-    # except psutil.AccessDenied:
-    #     print "AccessDenied error:  Are you running as Administrator?"
+    except psutil.AccessDenied:
+        print "AccessDenied error:  Are you running as Administrator?"
 
 
 
