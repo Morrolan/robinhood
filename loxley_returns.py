@@ -11,21 +11,32 @@ except ImportError:
 
 
 robin = sherwood.Merryman('Robin')
-print "Name: " + str(robin.get_name)
 antidote_present = robin.check_for_antidote('marion.txt', 'HELP')
 
 
-for p in psutil.process_iter():
+# for process in psutil.process_iter():
+#
+#     try:
+#         print process.name()
+#
+#         if process.name() == 'mspaint.exe':
+#             print "Woo!   Found mspaint.exe at pid: ({0})".format(str(process.pid))
+#
+#             _pid = process.pid
+#
+#             while True:
+#                 if psutil.pid_exists(_pid) is True:
+#                     print "MSpaint still exists"
+#                 else:
+#                     print "MSpaint has died :("
 
-    try:
-        print p.name()
 
-        if p.name() == 'python.exe':
-            print "Woo!   Found Python at pid: ({0})".format(str(p.pid))
-            exit(0)
 
-    except psutil.AccessDenied:
-        print "AccessDenied error:  Are you running as Administrator?"
+
+            # exit(0)
+
+    # except psutil.AccessDenied:
+    #     print "AccessDenied error:  Are you running as Administrator?"
 
 
 

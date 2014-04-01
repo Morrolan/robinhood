@@ -15,9 +15,40 @@ class Merryman(object):
 
     def __init__(self, name):
         self.name = name
+        self.pid = self.get_pid
+        self.start()
 
     def get_name(self):
         return self.name
+
+    @staticmethod
+    def get_pid(self):
+        """
+
+        :param self:
+        :return:
+        """
+        if psutil is not None:
+            pids = []
+
+            for process in psutil.process_iter():
+                try:
+                    if process.name() == 'python.exe':
+                        pids.append(process.pid)
+                except psutil.AccessDenied:
+                    # we pass here purely because we simply don't have access to all process data and we don't want our
+                    # code to crash purely because we haven't accounted for differing security levels.
+                    pass
+
+            return pids
+
+    def start(self):
+        """
+        Purely start up print issue.
+
+        """
+        print("I am:  {0}".format(str(self.name)))
+        print("Python PIDs:  {0}".format(str(self.pid(self))))
 
     def check_for_files(self):
         """
@@ -46,8 +77,9 @@ class Merryman(object):
                 _antidote_contents = _antidote_file.read()
 
                 if antidote_key in _antidote_contents:
-                    # print("STOP THE MERRYMEN FROM DOING THEIR SHIT HERE...")
+
                     return True
+
                 else:
                     # Don't terminate the merrymen as no antidote has been found
                     return False
