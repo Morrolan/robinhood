@@ -42,7 +42,8 @@ class Merryman(object):
 
             for process in psutil.process_iter():
                 try:
-                    if process.name() == 'python.exe':
+                    process_name = process.name()
+                    if process_name.startswith('python'):
                         pids.append(process.pid)
                 except psutil.AccessDenied:
                     # we pass here purely because we simply don't have access to all process data and we don't want our
