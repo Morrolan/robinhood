@@ -14,22 +14,31 @@ class Merryman(object):
     __all__ = []
 
     def __init__(self, name):
+        """
+
+        :param name:
+        """
         self.name = name
         self.pid = self.get_pid
         self.start()
 
+    @property
     def get_name(self):
+        """
+
+
+        :return:
+        """
         return self.name
 
     @staticmethod
-    def get_pid(self):
+    def get_pid():
         """
 
-        :param self:
         :return:
         """
         if psutil is not None:
-            pids = []
+            pids = None
 
             for process in psutil.process_iter():
                 try:
@@ -44,11 +53,11 @@ class Merryman(object):
 
     def start(self):
         """
-        Purely start up print issue.
+        Lets do some basic setup stuff that is cleaner in here than in __init__, like printing.
 
         """
         print("I am:  {0}".format(str(self.name)))
-        print("Python PIDs:  {0}".format(str(self.pid(self))))
+        print("Python PIDs:  {0}".format(str(self.pid())))
 
     def check_for_files(self):
         """
@@ -58,7 +67,7 @@ class Merryman(object):
         """
         pass
 
-    def hide_oneself(self):
+    def hide_self(self):
         """
         If I need to hide myself, i will do it here.  I am not not sure what form this will take.
 
@@ -96,11 +105,18 @@ class Merryman(object):
                                   "Where art though my fair Marion?"]
 
                 _response_length = len(_response_list)
-                _response_string = str(_response_list[random.randint(0, _response_length -1)])
+                _response_string = str(_response_list[random.randint(0, _response_length - 1)])
 
                 print(_response_string)
 
             return False
+
+    def find_others(selfself):
+        """
+
+
+        """
+        pass
 
     def talk_to_others(self):
         """
