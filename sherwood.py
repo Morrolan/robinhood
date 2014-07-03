@@ -38,11 +38,11 @@ class Merryman(object):
         :return:
         """
         if psutil is not None:
-            pids = None
+            pids = []
 
             for process in psutil.process_iter():
                 try:
-                    process_name = process.name()
+                    process_name = process.name
                     if process_name.startswith('python'):
                         pids.append(process.pid)
                 except psutil.AccessDenied:
@@ -110,6 +110,8 @@ class Merryman(object):
                 _response_length = len(_response_list)
                 _response_string = str(_response_list[random.randint(0, _response_length - 1)])
 
+                # we don't really want to use the print command here - ultimately we need to replace this with printing
+                # to ST.OUT.
                 print(_response_string)
 
             return False
