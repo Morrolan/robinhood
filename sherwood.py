@@ -60,6 +60,7 @@ class Merryman(object):
         print("I am:  {0}".format(str(self.name)))
         print("Python PIDs:  {0}".format(str(self.pid())))
 
+    @staticmethod
     def check_for_files(self):
         """
         Here we will do a cursory check for other viable instances of the program.
@@ -68,6 +69,7 @@ class Merryman(object):
         """
         pass
 
+    @staticmethod
     def hide_self(self):
         """
         If I need to hide myself, i will do it here.  I am not not sure what form this will take.
@@ -112,13 +114,15 @@ class Merryman(object):
 
             return False
 
-    def find_others(selfself):
+    @staticmethod
+    def find_others(self):
         """
 
 
         """
         pass
 
+    @staticmethod
     def talk_to_others(self):
         """
         Here I will check to see if the Friar is running.  At the moment I don't know how to identify
@@ -128,6 +132,7 @@ class Merryman(object):
         """
         pass
 
+    @staticmethod
     def save_others(self):
         """
         here we need to figure out and watch for the friar dying.
