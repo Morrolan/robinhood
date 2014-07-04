@@ -3,7 +3,7 @@ __author__ = 'morrolan'
 import os
 import random
 
-# as this is a third party module lets have some amount of error-checking involved.
+# as this is a third party module lets have some amount of error-checking involved eh?
 try:
     import psutil
 except ImportError:
@@ -20,6 +20,9 @@ class Merryman(object):
         """
         self.name = name
         self.pid = self.get_pid
+        self.antidote_key = None
+        self.antidote_file = None
+        self.hash = self.get_hash
         self.start()
 
     @property
@@ -42,15 +45,29 @@ class Merryman(object):
 
             for process in psutil.process_iter():
                 try:
-                    process_name = process.name
-                    if process_name.startswith('python'):
+                    if process.name.startswith('python'):
                         pids.append(process.pid)
+                        a = process.status
                 except psutil.AccessDenied:
                     # we pass here purely because we simply don't have access to all process data and we don't want our
                     # code to crash purely because we haven't accounted for differing security levels.
                     pass
 
             return pids
+
+    def get_hash(self):
+        """
+
+
+        """
+        try:
+            print(type(self.pid))
+            #process = psutil.Process(self.pid)
+            #self.hash = hash(process)
+        except psutil.NoSuchProcess:
+            pass
+        except psutil.AccessDenied:
+            pass
 
     def start(self):
         """
@@ -59,6 +76,7 @@ class Merryman(object):
         """
         print("I am:  {0}".format(str(self.name)))
         print("Python PIDs:  {0}".format(str(self.pid())))
+        print("My hash:  {0}".format(str(self.hash())))
 
     @staticmethod
     def check_for_files(self):
@@ -77,18 +95,22 @@ class Merryman(object):
         """
         pass
 
-    @staticmethod
-    def check_for_antidote(antidote_file, antidote_key):
+
+    def check_for_antidote(self, antidote_file, antidote_key):
         """
         Here we will look for the antidote, which will be a text file of a particular name with particular contents.
         Marion should choose this when spawning the merrymen, and it should be obfuscated in some way that isn't easy
         to find out retrospectively.
         """
+
+        self.antidote_key = antidote_key
+        self.antidote_file = antidote_file
+
         try:
             with open(os.path.normpath(antidote_file)) as _antidote_file:
-                _antidote_contents = _antidote_file.read()
+                _antidote_key = _antidote_file.read()
 
-                if antidote_key in _antidote_contents:
+                if _antidote_key in _antidote_file:
 
                     return True
 
